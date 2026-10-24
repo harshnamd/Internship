@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Wind Speed Prediction - Auto Report</h2><p>Generated {{ stamp }} | Best model: <b>{{ best }}</b></p>
+<p>Train samples: {{ m.n_train }} | Test samples: {{ m.n_test }}</p>
+<table class="tbl"><tr><th>Model</th><th>Test R2</th><th>MAE</th><th>MSE</th><th>RMSE</th><th>Train R2</th><th>5-fold CV R2</th></tr>
+{% for n,v in r.items() %}<tr><td>{{ n }}</td><td>{{ '%.4f'|format(v.test.R2) }}</td><td>{{ '%.3f'|format(v.test.MAE) }}</td>
+<td>{{ '%.3f'|format(v.test.MSE) }}</td><td>{{ '%.3f'|format(v.test.RMSE) }}</td><td>{{ '%.4f'|format(v.train.R2) }}</td>
+<td>{{ '%.4f'|format(v.cv_r2_mean) }} &plusmn; {{ '%.4f'|format(v.cv_r2_std) }}</td></tr>{% endfor %}</table></div>
+<div class="card"><h3>Figures</h3>{% for f in figs %}<p><img src="/outputs/{{ f }}" alt="{{ f }}"><br><small>{{ f }}</small></p>{% endfor %}</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Batch Prediction (CSV)</h2>
+<p>Upload a CSV with columns <code>T.MAX, T.MIN, T.MIN.G, RAIN</code> plus either <code>YEAR, MONTH, DAY</code> or a <code>DATE</code> column.</p>
+<form method="post" enctype="multipart/form-data">
+<label>CSV file</label><input type="file" name="file" accept=".csv" required>
+<label>Model</label><select name="model">{% for m in models %}<option {{ 'selected' if m==best }}>{{ m }}</option>{% endfor %}</select>
+<button>Predict</button></form>
+{% if error %}<div class="err">{{ error }}</div>{% endif %}</div>
+{% if table %}<div class="card"><h3>{{ n }} predictions ({{ model_used }}) - first 100 shown</h3>
+<div class="scroll">{{ table|safe }}</div><a class="btn" href="/batch/download">Download CSV</a></div>{% endif %}
+{% endblock %}

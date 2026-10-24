@@ -1,0 +1,1 @@
+Place weather.csv here (columns: DATE, WIND, RAIN, T.MAX, T.MIN, T.MIN.G), then run: python train.py

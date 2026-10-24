@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Predict Daily Wind Speed</h2>
+<form method="post" action="/predict"><div class="grid">
+{% for f in fields %}<div><label>{{ f }}</label>
+<input name="{{ f }}" type="number" step="any" required value="{{ values.get(f,'') }}"></div>{% endfor %}
+<div><label>Model</label><select name="model">{% for m in models %}
+<option {{ 'selected' if m==best }}>{{ m }}</option>{% endfor %}</select></div></div>
+<button>Predict</button></form>
+{% if result %}<div class="result">{{ result.model }}: predicted wind speed = <b>{{ result.wind }}</b></div>{% endif %}
+{% if error %}<div class="err">{{ error }}</div>{% endif %}</div>{% endblock %}
