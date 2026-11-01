@@ -1,1 +1,0 @@
-Place creditcard.csv here (Kaggle: mlg-ulb/creditcardfraud), then run: python train.py
