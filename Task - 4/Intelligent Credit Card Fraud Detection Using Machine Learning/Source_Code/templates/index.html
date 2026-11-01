@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Real-time Transaction Check</h2>
+<p>Enter the transaction fields (V1-V28 are the anonymised PCA components) or load a sample row.</p>
+<button type="button" class="btn2" onclick="fill('fraud')">Load fraud sample</button>
+<button type="button" class="btn2" onclick="fill('legit')">Load legitimate sample</button>
+<form method="post" action="/predict" id="f"><div class="grid">
+{% for c in raw_cols %}<div><label>{{ c }}</label><input name="{{ c }}" type="number" step="any" required value="{{ values.get(c,'') }}"></div>{% endfor %}
+<div><label>Model</label><select name="model">{% for m in models %}<option {{ 'selected' if m==best }}>{{ m }}</option>{% endfor %}</select></div></div>
+<button>Predict</button></form>
+{% if result %}<div class="{{ 'fraud' if result.label==1 else 'legit' }}">{{ result.model }}:
+<b>{{ 'Fraudulent (1)' if result.label==1 else 'Legitimate (0)' }}</b> &mdash; fraud probability {{ result.prob }}%</div>{% endif %}
+{% if error %}<div class="err">{{ error }}</div>{% endif %}</div>
+<script>const S={{ samples|tojson }};
+function fill(k){for(const [n,v] of Object.entries(S[k])){const e=document.querySelector('[name="'+n+'"]');if(e)e.value=v;}}</script>
+{% endblock %}

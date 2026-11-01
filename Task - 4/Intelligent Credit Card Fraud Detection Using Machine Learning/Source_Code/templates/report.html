@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Fraud Detection - Auto Report</h2><p>Generated {{ stamp }} | Best model by F1: <b>{{ best }}</b></p>
+<p>Train: {{ m.n_train }} | Test: {{ m.n_test }} | Duplicates removed: {{ m.duplicates_removed }} | SMOTE ratio: {{ m.smote_ratio }}</p>
+<table class="tbl"><tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>ROC-AUC</th></tr>
+{% for n,v in r.items() %}<tr><td>{{ n }}</td><td>{{ '%.4f'|format(v.Accuracy) }}</td><td>{{ '%.4f'|format(v.Precision) }}</td>
+<td>{{ '%.4f'|format(v.Recall) }}</td><td>{{ '%.4f'|format(v.F1) }}</td><td>{{ '%.4f'|format(v.ROC_AUC) }}</td></tr>{% endfor %}</table>
+<h3>XGBoost 5-fold CV</h3><p>{% for k,v in cv.items() %}{{ k }}: {{ '%.4f'|format(v.mean) }} &plusmn; {{ '%.4f'|format(v.std) }} &nbsp; {% endfor %}</p></div>
+<div class="card"><h3>Figures</h3>{% for f in figs %}<p><img src="/outputs/{{ f }}" alt="{{ f }}"><br><small>{{ f }}</small></p>{% endfor %}</div>
+{% endblock %}
