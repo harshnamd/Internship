@@ -1,0 +1,87 @@
+{
+  "best_model": "Ridge",
+  "include_codes": false,
+  "input_cols": [
+    "Gender",
+    "Age",
+    "Driving_License",
+    "Previously_Insured",
+    "Vehicle_Age",
+    "Vehicle_Damage",
+    "Annual_Premium",
+    "Vintage"
+  ],
+  "choices": {
+    "Gender": [
+      "Female",
+      "Male"
+    ],
+    "Vehicle_Age": [
+      "1-2 Year",
+      "< 1 Year",
+      "> 2 Years"
+    ],
+    "Vehicle_Damage": [
+      "No",
+      "Yes"
+    ]
+  },
+  "samples": {
+    "likely buyer": {
+      "Gender": "Male",
+      "Age": 22,
+      "Driving_License": 1,
+      "Previously_Insured": 0,
+      "Vehicle_Age": "< 1 Year",
+      "Vehicle_Damage": "Yes",
+      "Annual_Premium": 43284.0,
+      "Vintage": 192
+    },
+    "unlikely buyer": {
+      "Gender": "Female",
+      "Age": 47,
+      "Driving_License": 1,
+      "Previously_Insured": 1,
+      "Vehicle_Age": "1-2 Year",
+      "Vehicle_Damage": "No",
+      "Annual_Premium": 35663.0,
+      "Vintage": 27
+    }
+  },
+  "coefficients": {
+    "Ridge": {
+      "Previously_Insured": -2.006145363633918,
+      "Vehicle_Damage_No": -1.513997447093234,
+      "Vehicle_Damage_Yes": 0.7684005334389169,
+      "Vehicle_Age_< 1 Year": -0.7096458867526797,
+      "Age_Group_18-25": -0.6971088340689008,
+      "Age_Group_65+": -0.5767645959225567,
+      "Gender_Female": -0.42088652992710707,
+      "Age_Group_26-35": 0.3771639368163247,
+      "Gender_Male": -0.32471038373232225,
+      "Vintage_Group_Very Long": -0.21951495374871235,
+      "Age_Group_36-45": 0.20645130150253113,
+      "Vintage_Group_Long": -0.18984603840083092,
+      "Vintage_Group_Medium": -0.17686548305190164,
+      "Age_Group_56-65": -0.16925525642117664,
+      "Premium_Group_Medium": -0.16451640679078489
+    },
+    "Lasso": {
+      "Vehicle_Damage_No": -2.4441006075543923,
+      "Previously_Insured": -2.005528934418305,
+      "Age_Group_18-25": -0.9207870429359426,
+      "Age_Group_65+": -0.8075295410750628,
+      "Vehicle_Age_< 1 Year": -0.7903399912166834,
+      "Age_Group_56-65": -0.39818486235079487,
+      "Vehicle_Age_1-2 Year": -0.20991193417352483,
+      "Gender_Male": 0.20713945081038376,
+      "Vehicle_Damage_Yes": -0.16135447077349618,
+      "Premium_Group_Medium": -0.15935339066023338,
+      "Premium_Group_Very High": -0.1575707547294133,
+      "Age_Group_26-35": 0.15238624411084878,
+      "Age": -0.14447738057616144,
+      "Premium_Group_High": -0.14213631313886016,
+      "Premium_Group_Low": -0.13766221369976486
+    }
+  }
+}

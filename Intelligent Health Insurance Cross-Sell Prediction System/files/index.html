@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Vehicle Insurance Cross-Sell Prediction</h2>
+<p>Enter an existing health-insurance customer's details, or load a sample.</p>
+{% for k in samples %}<button type="button" class="btn2" onclick="fill('{{ k }}')">Load {{ k }} sample</button>{% endfor %}
+<form method="post" action="/predict"><div class="grid">
+{% for c in cols %}<div><label>{{ c }}</label>
+{% if c in cats %}<select name="{{ c }}">{% for o in choices[c] %}<option {{ 'selected' if values.get(c)==o }}>{{ o }}</option>{% endfor %}</select>
+{% else %}<input name="{{ c }}" type="number" step="any" required value="{{ values.get(c,'') }}">{% endif %}</div>{% endfor %}
+<div><label>Model</label><select name="model">{% for m in models %}<option {{ 'selected' if m==best }}>{{ m }}</option>{% endfor %}</select></div></div>
+<button>Predict</button></form>
+{% if result %}<div class="res {{ result.tier }}"><b>{{ result.model }}</b>: purchase score <b>{{ result.score }}%</b> &mdash; tier <b>{{ result.tier }}</b>
+<ul>{% for f in result.factors %}<li>{{ f.name }} {{ f.effect }} the score ({{ f.val }})</li>{% endfor %}</ul>
+<small>The score comes from a model trained on balanced (SMOTE) data, so treat it as a ranking score rather than a literal purchase probability.</small></div>{% endif %}
+{% if error %}<div class="err">{{ error }}</div>{% endif %}</div>
+<script>const S={{ samples|tojson }};
+function fill(k){for(const [n,v] of Object.entries(S[k])){const e=document.querySelector('[name="'+n+'"]');if(e)e.value=v;}}</script>
+{% endblock %}

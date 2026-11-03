@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Cross-Sell Prediction - Auto Report</h2><p>Generated {{ stamp }} | Best model by test AUC: <b>{{ best }}</b></p>
+<p>Train: {{ m.n_train }} | Test: {{ m.n_test }} | IQR outliers removed: {{ m.outliers_removed }} | Lasso zeroed {{ m.lasso_zero_coefficients }} of {{ m.n_features_after_encoding }} coefficients</p>
+<table class="tbl"><tr><th>Model</th><th>alpha</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>ROC-AUC</th><th>CV AUC (5-fold)</th></tr>
+{% for n,v in r.items() %}{% set t=v['test_at_0.5'] %}<tr><td>{{ n }}</td><td>{{ v.alpha }}</td><td>{{ '%.4f'|format(t.Accuracy) }}</td><td>{{ '%.4f'|format(t.Precision) }}</td>
+<td>{{ '%.4f'|format(t.Recall) }}</td><td>{{ '%.4f'|format(t.F1) }}</td><td>{{ '%.4f'|format(t.ROC_AUC) }}</td>
+<td>{{ '%.4f'|format(v.cv.ROC_AUC.mean) }} &plusmn; {{ '%.4f'|format(v.cv.ROC_AUC.std) }}</td></tr>{% endfor %}</table></div>
+<div class="card"><h3>Figures</h3>{% for f in figs %}<p><img src="/outputs/{{ f }}" alt="{{ f }}"><br><small>{{ f }}</small></p>{% endfor %}</div>
+{% endblock %}

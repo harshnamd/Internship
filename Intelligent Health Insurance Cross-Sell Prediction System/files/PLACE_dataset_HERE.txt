@@ -1,0 +1,1 @@
+Place the Kaggle Health Insurance Cross-Sell CSV here as insurance_cross_sell.csv (columns: id, Gender, Age, Driving_License, Region_Code, Previously_Insured, Vehicle_Age, Vehicle_Damage, Annual_Premium, Policy_Sales_Channel, Vintage, Response), then run: python train.py
