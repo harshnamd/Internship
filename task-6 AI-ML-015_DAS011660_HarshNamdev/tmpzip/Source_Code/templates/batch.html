@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Batch Application Screening (CSV)</h2>
+<p>Upload a CSV with columns: <code>{{ cols|join(', ') }}</code>. Loan_ID and Loan_Status columns are kept but ignored; missing cells are filled with the training medians/modes. Max 5 MB.</p>
+<form method="post" enctype="multipart/form-data"><label>CSV file</label><input type="file" name="file" accept=".csv" required>
+<label>Model</label><select name="model">{% for m in models %}<option {{ 'selected' if m==best }}>{{ m }}</option>{% endfor %}</select>
+<button>Screen applications</button></form>{% if error %}<div class="err">{{ error }}</div>{% endif %}</div>
+{% if table %}<div class="card"><h3>{{ n }} applications screened ({{ model_used }}): {{ n_ok }} approved, {{ n - n_ok }} not approved (first 100 shown)</h3>
+<div class="scroll">{{ table|safe }}</div><a class="btn" href="/batch/download">Download full CSV</a></div>{% endif %}
+{% endblock %}

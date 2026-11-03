@@ -1,0 +1,116 @@
+{
+  "best_model": "Random Forest",
+  "impute_stats": {
+    "ApplicantIncome": 3500.0,
+    "CoapplicantIncome": 1400.0,
+    "LoanAmount": 125.0,
+    "Loan_Amount_Term": 360.0,
+    "Credit_History": 1.0,
+    "Gender": "Male",
+    "Married": "Yes",
+    "Dependents": "0",
+    "Education": "Graduate",
+    "Self_Employed": "No",
+    "Property_Area": "Urban"
+  },
+  "raw_cols": [
+    "Gender",
+    "Married",
+    "Dependents",
+    "Education",
+    "Self_Employed",
+    "ApplicantIncome",
+    "CoapplicantIncome",
+    "LoanAmount",
+    "Loan_Amount_Term",
+    "Credit_History",
+    "Property_Area"
+  ],
+  "cat_classes": {
+    "Gender": [
+      "Female",
+      "Male"
+    ],
+    "Married": [
+      "No",
+      "Yes"
+    ],
+    "Education": [
+      "Graduate",
+      "Not Graduate"
+    ],
+    "Self_Employed": [
+      "No",
+      "Yes"
+    ],
+    "Property_Area": [
+      "Rural",
+      "Semiurban",
+      "Urban"
+    ]
+  },
+  "samples": {
+    "approved-like": {
+      "Gender": "Male",
+      "Married": "Yes",
+      "Dependents": "2",
+      "Education": "Not Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 3418,
+      "CoapplicantIncome": 1380,
+      "LoanAmount": 135.0,
+      "Loan_Amount_Term": 360.0,
+      "Credit_History": "1",
+      "Property_Area": "Urban"
+    },
+    "rejected-like": {
+      "Gender": "Female",
+      "Married": "No",
+      "Dependents": "0",
+      "Education": "Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 4333,
+      "CoapplicantIncome": 2333,
+      "LoanAmount": 162.0,
+      "Loan_Amount_Term": 360.0,
+      "Credit_History": "0",
+      "Property_Area": "Rural"
+    }
+  },
+  "importance": {
+    "Random Forest": {
+      "Married": 0.10562169498250827,
+      "Credit_History": 0.0785046495726243,
+      "credit_with_loan": 0.06488517368379457,
+      "credit_with_income": 0.05601276919932877,
+      "Gender": 0.054664567860790464,
+      "edu_credit": 0.05161379205317277,
+      "credit_with_emi": 0.04272828366566966,
+      "income_ratio": 0.03995758741584831,
+      "Property_Area": 0.037884686771085925,
+      "family_size": 0.0288765865185301,
+      "loan_to_total_income": 0.028740542848038533,
+      "Dependents": 0.0269024970534332,
+      "emi_to_income": 0.02394198892054159,
+      "total_income": 0.021031832177492698,
+      "income_per_family_member": 0.020933595194237757
+    },
+    "Gradient Boosting": {
+      "Married": 0.16095541316601303,
+      "Credit_History": 0.13238061126596515,
+      "credit_with_loan": 0.09737384318508391,
+      "Gender": 0.09652682062366971,
+      "Property_Area": 0.08640551183403848,
+      "credit_with_income": 0.04155364003694314,
+      "family_size": 0.03686268281661269,
+      "Education": 0.02836374616137809,
+      "has_dependents": 0.026841547208086982,
+      "emi": 0.02604471333562289,
+      "Dependents": 0.02556751676545405,
+      "income_per_dependent": 0.023074339619326686,
+      "loan_to_total_income": 0.022230265479583088,
+      "income_ratio": 0.021340713361225106,
+      "loan_log": 0.018637507217949018
+    }
+  }
+}
